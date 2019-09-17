@@ -12,6 +12,8 @@ output:
 ```{r globalopts, include = FALSE}
 # LOAD ALL PACKAGES IN THIS CHUNK
 library(knitr)
+library(readr)
+library(ggplot2)
 opts_chunk$set(comment = "", message = FALSE, warning = FALSE)
 ```
 
@@ -101,7 +103,8 @@ The dataset [STT3850majors](https://raw.githubusercontent.com/STAT-JET-ASU/Datas
 A) Use `read_csv` to import the data, then `glimpse` and `head` to display the dataset structure.
 
 ```{r prob4dataset}
-# Put your code here.
+majors <- read_csv("STT3850majors.csv")
+glimpse
 ```
 
 B) Convert `Year` into a factor with the order `Freshman`, `Sophomore`, `Junior`, `Senior`, and `Graduate Certificate Program`. Then make a frequency table for the variable.
