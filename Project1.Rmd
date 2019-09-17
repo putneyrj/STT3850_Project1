@@ -1,6 +1,6 @@
 ---
 title: "Project 1--Basic Programming and EDA"
-author: "YOUR NAME HERE"
+author: "RJ Witschger & RJ Putney"
 date: '`r format(Sys.time(), "%A, %B %d, %Y @ %I:%M %p")`'
 output: 
   html_document: 
@@ -68,7 +68,7 @@ A) Write the code to create `star_wars_matrix2`, including the row and column na
 B) Create `ticket_prices_matrix` as a data frame rather than a matrix using `data.frame`. The matrix is supposed to represent increasing ticket prices over time, but it DataCamp assigns higher prices to the older movies. Correct this error and put the prices in the correct order in your version.
 
 ```{r prob2pricedf}
-  ticket_prices_matrix <- data.frame()
+  ticket_prices_matrix <- data.frame("Movie" = c("The Phantom Menace", "Attack of the Clones", "Revenge of the Sith"), "Price" = )
 ```
 
 
