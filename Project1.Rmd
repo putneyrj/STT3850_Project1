@@ -1,6 +1,6 @@
 ---
 title: "Project 1--Basic Programming and EDA"
-author: "RJ Putney"
+author: "YOUR NAME HERE"
 date: '`r format(Sys.time(), "%A, %B %d, %Y @ %I:%M %p")`'
 output: 
   html_document: 
@@ -12,8 +12,6 @@ output:
 ```{r globalopts, include = FALSE}
 # LOAD ALL PACKAGES IN THIS CHUNK
 library(knitr)
-library(ggplot2)
-library(dplyr)
 opts_chunk$set(comment = "", message = FALSE, warning = FALSE)
 ```
 
@@ -35,25 +33,23 @@ Create, store, and print out the vectors below using functions `:`, `c`, `seq`, 
     + Business = 5%
 
 ```{r prob1codeX}
-X <- c(0:10)
+  x <- c(1:10)
 ```
 
 ```{r prob1codePH}
-PH <- seq(from = 0, to = 14, by = 0.1)
+  PH <- seq(from = 0, to = 14, by = 0.1)
 ```
 
 ```{r prob1codeCLOCK}
-CLOCK <- seq(from = 60, to = 0, by = -1)
+  CLOCK <- seq(from = 60, to =0, by -1)
 ```
 
 ```{r prob1codePLAY}
-PLAY <- c("rock", "paper", "scissor", "lizrd", "spock")
+  PLAY <- c("rock" , "paper", "scissors", "lizard", "Spock")
 ```
 
 ```{r prob1codeCLASS}
-CLASS <- c(rep("Actuarial Science", 9), rep("Computer Science", 24), 
-           rep("Mathematical Sciences", 12), rep("Other Sciences", 12), 
-           rep("Business", 3))
+  CLASS <- c(rep("Actuarial Science", 0.15 * 60), rep("Computer Science", 0.4 * 60), rep("Mathematical Sciences", 0.2 * 60), rep("Other Sciences", 0.2 * 60),  rep("Business", 0.05 * 60))
 ```
 
 
@@ -64,13 +60,15 @@ In DataCamp's [Introduction to R](https://www.datacamp.com/courses/free-introduc
 A) Write the code to create `star_wars_matrix2`, including the row and column names. 
 
 ```{r prob2sw2matrix}
-# Put your code here.
+  star_wars_matrix2 <- matrix(c(474.5, 552.5, 310.7, 338.7, 380.3, 468.5), nrow = 3, ncol = 2)
+  colnames(star_wars_matrix2) <- c("US", "non-US")
+  rownames(star_wars_matrix2) <- c("The Phantom Menace", "Attack of the Clones", "Revenge of the Sith")
 ```
 
 B) Create `ticket_prices_matrix` as a data frame rather than a matrix using `data.frame`. The matrix is supposed to represent increasing ticket prices over time, but it DataCamp assigns higher prices to the older movies. Correct this error and put the prices in the correct order in your version.
 
 ```{r prob2pricedf}
-# Put your code here.
+  ticket_prices_matrix <- data.frame()
 ```
 
 
