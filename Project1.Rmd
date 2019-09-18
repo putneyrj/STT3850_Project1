@@ -72,7 +72,7 @@ A) Write the code to create `star_wars_matrix2`, including the row and column na
 B) Create `ticket_prices_matrix` as a data frame rather than a matrix using `data.frame`. The matrix is supposed to represent increasing ticket prices over time, but it DataCamp assigns higher prices to the older movies. Correct this error and put the prices in the correct order in your version.
 
 ```{r prob2pricedf}
-  ticket_prices_matrix <- data.frame("Movie" = c("The Phantom Menace", "Attack of the Clones", "Revenge of the Sith"), "Price" = )
+  ticket_prices_matrix <- data.frame("Movie" = c("The Phantom Menace", "Attack of the Clones", "Revenge of the Sith"), "Price" = c(4.9, 4.9, 4.5, 4.5, 4.0, 4.0), "Region" = c("US", "non-US"))
 ```
 
 
@@ -85,13 +85,37 @@ Write a `for` loop to create a vector `FIB` that contains the first 10 numbers i
 Store and print `FIB` when it is finished. If you don't get the correct sequence of numbers, check your work!
   
 ```{r prob3loop}
-# Put your code here.
+  fib <- c(0,1)
+  add <- 1
+  replace <- 2
+  for (i in 1:8) {
+    fib <- append(fib, add)
+    temp <- add
+    add <- replace
+    replace <- add + temp
+  }
+  fib
 ```
 
 Now adapt your code as the basis for a function `FIBfunction` that will generate the first **n** digits of the Fibonacci sequence when the user inputs the argument `n`. You should be able to save the vector output of your function as an object using the assignment arrow (e.g., `<-` (e.g., `outputvector <- FIBfunction(inputvalue)`). Once you have a working function, demonstrate it using `n` = 20. Store the result and print it out.
 
 ```{r prob3func}
-# Put your code here.
+  fib <- function(length) {
+    newLength = length - 2
+    fib <- c(0,1)
+    add <- 1
+    replace <- 2
+    for (i in 1:newLength) {
+      fib <- append(fib, add)
+      temp <- add
+      add <- replace
+      replace <- add + temp
+    }
+    return(fib)
+  }
+
+  result <- fib(20)
+  result
 ```
 
 
