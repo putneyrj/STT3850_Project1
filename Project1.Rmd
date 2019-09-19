@@ -180,25 +180,44 @@ In January 2007, Entertainment Weekly magazine featured a cover story about thre
 A) Use `read_csv` to import the data, then `glimpse` and `head` to display the dataset structure.
 
 ```{r prob5dataset}
-# Put your code here.
+  library(dplyr)
+
+  data <- read_csv("oscarages.csv")
+  glimpse(data)
+  head(data)
 ```
 
 B) Use `filter` and a single `summarize` (with any other necessary functions) to compute and display five-number summaries, IQR, and the lower and upper fences for Best Actor and Best Actress winners prior to 2007.
 
 ```{r prob6summaries}
-# Put your code here.
+  before2007 <- filter(data, data$remony < 2007) %>% group_by(category) %>%
+  summarize(min = fivenum(before2007)[1],
+            Q1 = fivenum(before2007)[2],
+            med= fivenum(before2007)[3],
+            Q3= fivenum(before2007)[4],
+            max= fivenum(before2007)[5],
+            IQR = IQR(before2007),
+            Lower_F = Q1 - 1.5 * IQR,
+            Upper_F = Q3 + 1.5 * IQR)
 ```
 
 C) Create boxplots to compare the ages of Best Actor and Best Actress winners prior to 2007.
 
 ```{r prob5boxplots}
-# Put your code here.
+  library(ggplot2)
+
+  actress2007 <- filter(data, remony < 2007 & category == "Best Actress")
+  actor2007 <- filter(data, remony < 2007 & category == "Best Actor")
+  
+  ggplot(actress2007, aes(x = remony, y = age, fill = age)) + geom_boxplot()
+  ggplot(actor2007, aes(x = remony, y = age)) + geom_boxplot()
 ```
 
 D) Which actress actually won the Best Actress Oscar in 2007? How old was she? For what movie did she win? Use the `filter` and `select` functions to find and display the answer, not visual inspection of the dataset.
 
 ```{r prob5winner}
-# Put your code here.
+  actress2007 <- filter(data, remony == 2007 & category == "Best Actress")
+  actress2007
 ```
 
 F) Was the 2007 Best Actress winner an outlier compared to previous Best Actress winners? If she were a man, would she have been an outlier compared to previous Best Actor winners? Determine the answers using code, not visual inspection.
@@ -207,7 +226,7 @@ F) Was the 2007 Best Actress winner an outlier compared to previous Best Actress
 # Put your code here.
 ```
 
-G) In what way do your analyses appear to support an assertion of age bias againt women in Hollywood? Cite values of specific statistics and/or features of your boxplots in your discussion. 
+G) In what way do your analyses appear to support an assertion of age bias against women in Hollywood? Cite values of specific statistics and/or features of your boxplots in your discussion. 
 
 **ANSWER**: 
 
@@ -256,7 +275,7 @@ C) Assess recoded height for normality using a density plot, ECDF plot, QQ plot,
 
 ### Session Info
 
-**Names of Collaborators**:
+**Names of Collaborators**: RJ Witschger, RJ Putney
 
 ```{r}
 sessionInfo()
