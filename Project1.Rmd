@@ -144,28 +144,34 @@ table(majors$Year)
 C) Make a `ggplot2` barplot to show the distribution of `CodedMajor` with proportions on the y-axis.
 
 ```{r prob4barplot1}
-majors$CodedMajor <- as.factor(majors$CodedMajor)
-
-majors%>%
-  summarise(min = fivenumCodedMajor[1],
-            Q1 = fivenumCodedMajor[2],
-            med= fivenumCodedMajor[3],
-            Q3= fivenumCodedMajor[4],
-            max= fivenumCodedMajor[5],
-            IQR = IQR(CodedMajor),
-            Lower_F = Q1 - 1.5 * IQR,
-            Upper_F = Q3 + 1.5 * IQR)
-
-boxplot.stats(sort(majors$CodedMajor))
+CodedMajorPlot <- ggplot(majors, aes(x = CodedMajor)) +
+  geom_bar(aes(y=..count../sum(..count..))) +
+  labs(title = "Distribution of Coded Majors",
+    caption = "source dataset = STT3850majors.csv", 
+    x = "Academic Year",
+    y = "Proportion") 
+CodedMajorPlot
 ```
 
 D) Make a `ggplot2` barplot that shows proportion of `CodedMajor` within each academic year `AY`.
 
 ```{r prob4barplot2}
-# Put your code here.
+CodedMajorPlot2 <- ggplot(majors, aes(x = AY, fill = CodedMajor)) +
+  geom_bar(aes(y=..count../sum(..count..)), position = "fill") + 
+  #scale_fill_manual(values = c("84DCC6", "A5FFD6", "FFA69E", "FF686A")) + 
+  labs(title = "Distribution of Coded Majors within Each Academic Year",
+    caption = "source dataset = STT3850majors.csv", 
+    x = "Academic Year",
+    y = "Proportion") 
+
+CodedMajorPlot2
+
 ```
 
 E) Which major is most common in Dr. Thomley's STT3850 classes? Has it been a constant proportion over the academic years contained in the dataset? If so, about what proportion? If not, what kind of pattern do you see?
+
+The most common major in Dr. Thomley's STT3850 class is Computer Science. 
+The proporiton at which the Computer Science major has been the most common has be decreasing over the years contained in the dataset.  
 
 **ANSWER**:
 
@@ -239,7 +245,7 @@ NOTE: You do not need to label your plots here. If you store a calculated answer
 A) Go to the Galton height data [description](https://stat-jet-asu.github.io/Datasets/InstructorDescriptions/galtonheightdata.html) and import the dataset. Use `glimpse` and `head` to display the dataset structure.
 
 ```{r prob7dataset}
-# Put your code here.
+
 ```
 
 B) Use `mutate` and `ifelse` or `case_when` to recode two variables: (1) `Gender` to "male" and female"; and (2)  `Height` so that all the female heights are multiplied by 1.08 while male heights stay the same.
