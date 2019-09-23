@@ -281,23 +281,34 @@ B) Use `mutate` and `ifelse` or `case_when` to recode two variables: (1) `Gender
 C) Assess recoded height for normality using a density plot, ECDF plot, QQ plot, skewness and kurtosis. All plots should have a theoretical reference line for comparison. State your conclusion and how you made your decision.
 
 ```{r prob7histogram}
-# Put your code here.
+ggplot(NULL, aes(x = height$Height)) +
+  geom_histogram(aes(y = ..density..), bins = 30, 
+                 fill = "gray", color = "blue") 
 ```
 
 ```{r prob7density}
-# Put your code here.
+ggplot(height, aes(x = Height)) + 
+  geom_density()
 ```
 
 ```{r prob7ecdf}
-# Put your code here.
+ggplot(height, aes(x = Height)) + 
+  stat_ecdf()
 ```
 
 ```{r prob7qqplot}
-# Put your code here.
+ggplot(height, aes(sample = Height)) + 
+  stat_qq() +
+  stat_qq_line(color = "red")
 ```
 
 ```{r prob7skewkurt}
-# Put your code here.
+library(moments)
+skewK <- tibble(statistic = c("Skewness", "Kurtosis"),
+                data   = round(c(skewness(height$Height), 
+                                 kurtosis(height$Height)
+                               )))
+print.data.frame(skewK, row.names = FALSE)
 ```
 
 **ANSWER**:
