@@ -215,7 +215,7 @@ C) Create boxplots to compare the ages of Best Actor and Best Actress winners pr
   actress2007 <- filter(data, remony < 2007 & category == "Best Actress")
   actor2007 <- filter(data, remony < 2007 & category == "Best Actor")
   
-  ggplot(actress2007, aes(x = remony, y = age, fill = age)) + geom_boxplot()
+  ggplot(actress2007, aes(x = remony, y = age)) + geom_boxplot()
   ggplot(actor2007, aes(x = remony, y = age)) + geom_boxplot()
 ```
 
@@ -231,15 +231,25 @@ F) Was the 2007 Best Actress winner an outlier compared to previous Best Actress
 ```{r prob5outlier}
   library(ggplot2)
 
+  winningactress2007 <- filter(data, remony == 2007 & category == "Best Actress") %>% select(remony, name, age)
+  
   actress2007 <- filter(data, remony < 2007 & category == "Best Actress")
   actor2007 <- filter(data, remony < 2007 & category == "Best Actor")
-  ggplot(actress2007, aes(x = remony, y = age, fill = age)) + geom_boxplot()
-  ggplot(actor2007, aes(x = remony, y = age)) + geom_boxplot()
+  
+  ggplot(actress2007, aes(x = remony, y = age)) + 
+    geom_boxplot(color = "black") +
+    geom_point(data=winningactress2007, aes(x= 1967.5,y=age, color=age), size=3) +
+    ggtitle("Winning Actresses vs Winning Actress 2007")
+  
+  ggplot(actor2007, aes(x = remony, y = age)) + 
+    geom_boxplot(color = "black") +
+    geom_point(data=winningactress2007, aes(x= 1967.5, y=age, color=age), size=3) +
+    ggtitle("Winning Actors vs Winning Actress 2007")
 ```
 
 G) In what way do your analyses appear to support an assertion of age bias against women in Hollywood? Cite values of specific statistics and/or features of your boxplots in your discussion. 
 
-**ANSWER**: 
+**ANSWER**: Majority of the winning actresses are a lot younger than the winning actors. The outliers for women starts before age 50 while the outliers for men start above age 60. The winning actress in 2007 would not be an outlier compared to other actors who've won, but she's considered an outlier compared to the other actresses who've won.
 
 
 ### **Problem 6**
