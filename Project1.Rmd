@@ -222,14 +222,19 @@ C) Create boxplots to compare the ages of Best Actor and Best Actress winners pr
 D) Which actress actually won the Best Actress Oscar in 2007? How old was she? For what movie did she win? Use the `filter` and `select` functions to find and display the answer, not visual inspection of the dataset.
 
 ```{r prob5winner}
-  actress2007 <- filter(data, remony == 2007 & category == "Best Actress")
+  actress2007 <- filter(data, remony == 2007 & category == "Best Actress") %>% select(name, age, title)
   actress2007
 ```
 
 F) Was the 2007 Best Actress winner an outlier compared to previous Best Actress winners? If she were a man, would she have been an outlier compared to previous Best Actor winners? Determine the answers using code, not visual inspection.
 
 ```{r prob5outlier}
-# Put your code here.
+  library(ggplot2)
+
+  actress2007 <- filter(data, remony < 2007 & category == "Best Actress")
+  actor2007 <- filter(data, remony < 2007 & category == "Best Actor")
+  ggplot(actress2007, aes(x = remony, y = age, fill = age)) + geom_boxplot()
+  ggplot(actor2007, aes(x = remony, y = age)) + geom_boxplot()
 ```
 
 G) In what way do your analyses appear to support an assertion of age bias against women in Hollywood? Cite values of specific statistics and/or features of your boxplots in your discussion. 
