@@ -197,15 +197,16 @@ B) Use `filter` and a single `summarize` (with any other necessary functions) to
 
 ```{r prob6summaries}
   before2007 <- filter(data, data$remony < 2007) %>% group_by(category) %>%
-  summarize(min = fivenum(before2007)[1],
-            Q1 = fivenum(before2007)[2],
-            med= fivenum(before2007)[3],
-            Q3= fivenum(before2007)[4],
-            max= fivenum(before2007)[5],
-            IQR = IQR(before2007),
+  summarize(min = fivenum(data)[1],
+            Q1 = fivenum(data)[2],
+            med= fivenum(data)[3],
+            Q3= fivenum(data)[4],
+            max= fivenum(data)[5],
+            IQR = IQR(data),
             Lower_F = Q1 - 1.5 * IQR,
             Upper_F = Q3 + 1.5 * IQR)
 ```
+
 
 C) Create boxplots to compare the ages of Best Actor and Best Actress winners prior to 2007.
 
