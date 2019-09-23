@@ -215,8 +215,12 @@ C) Create boxplots to compare the ages of Best Actor and Best Actress winners pr
   actress2007 <- filter(data, remony < 2007 & category == "Best Actress")
   actor2007 <- filter(data, remony < 2007 & category == "Best Actor")
   
-  ggplot(actress2007, aes(x = remony, y = age)) + geom_boxplot()
-  ggplot(actor2007, aes(x = remony, y = age)) + geom_boxplot()
+  ggplot(actress2007, aes(x = remony, y = age)) + geom_boxplot() +
+    ggtitle("Actresses")
+  
+  ggplot(actor2007, aes(x = remony, y = age)) + geom_boxplot()  +
+    ggtitle("Actors")
+  
 ```
 
 D) Which actress actually won the Best Actress Oscar in 2007? How old was she? For what movie did she win? Use the `filter` and `select` functions to find and display the answer, not visual inspection of the dataset.
