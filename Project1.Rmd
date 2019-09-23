@@ -280,6 +280,8 @@ B) Use `mutate` and `ifelse` or `case_when` to recode two variables: (1) `Gender
       Gender == "F" ~ "female",
       Gender == "M" ~ "male")
     )
+ht_stats <- height %>% 
+  summarize(xbar = mean(Height), sd = sd(Height))
 ```
 
 C) Assess recoded height for normality using a density plot, ECDF plot, QQ plot, skewness and kurtosis. All plots should have a theoretical reference line for comparison. State your conclusion and how you made your decision.
@@ -292,12 +294,18 @@ ggplot(NULL, aes(x = height$Height)) +
 
 ```{r prob7density}
 ggplot(height, aes(x = Height)) + 
-  geom_density()
+  geom_density() +
+  stat_function(fun = dnorm, 
+                args = list(ht_stats$xbar, ht_stats$sd),   
+                color = "red")
 ```
 
 ```{r prob7ecdf}
 ggplot(height, aes(x = Height)) + 
-  stat_ecdf()
+  stat_ecdf() +
+  stat_function(fun = pnorm, 
+                args = list(ht_stats$xbar, ht_stats$sd), 
+                color = "red")
 ```
 
 ```{r prob7qqplot}
@@ -316,7 +324,7 @@ print.data.frame(skewK, row.names = FALSE)
 ```
 
 **ANSWER**:
-
+The average height is about 67.5in with very little outliers. 
 
 ### Session Info
 
